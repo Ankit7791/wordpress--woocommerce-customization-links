@@ -15,3 +15,36 @@ https://wpbeaches.com/image-carousel-thumbnail-slider-acf-gallery-field-wordpres
 //show product taxes and calculation on cart page 
 https://stackoverflow.com/questions/51357197/get-tax-rate-separately-for-every-cart-and-order-items-in-woocommerce
 
+		 <td class="product-subtotal" data-title="<?php esc_attr_e( 'Total', 'woocommerce' ); ?>">
+                            <?php
+                                echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+                            ?>
+                            
+                            <?php
+                                echo '<br/>';
+							    $tax_name = apply_filters( 'woocommerce_cart_item_tax', $_product->get_tax_class(), $cart_item, $cart_item_key );
+                                           
+                                echo "  ".$cart_item['line_subtotal_tax']." ل.ل (".$tax_rate."VAT)";
+							?>
+							
+							<?php 
+							    
+							      echo "<br/> -------------------- <br/>";
+							     $ctotal = apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
+							     
+							     $stotal = explode(' ',$ctotal);
+							     $sbtotal = explode('>',$stotal[2]);
+							     //print_r($sbtotal[1]);
+							     $taxes = $cart_item['line_subtotal_tax'];
+							     
+							     $number = (float) str_replace(',', '', $sbtotal[1]);
+							     
+							     $ftotal = $taxes+$number;
+							     
+							     
+							     echo " ".$ftotal. " ل.ل 
+							      (Total)"
+							
+							?>
+							
+                        </td>
