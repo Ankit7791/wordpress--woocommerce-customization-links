@@ -48,3 +48,13 @@ https://stackoverflow.com/questions/51357197/get-tax-rate-separately-for-every-c
 							?>
 							
                         </td>
+
+
+
+//editing the woocommerce lottery plugin to show the current count of the tickets purchased 
+
+        global $wpdb; 
+        $result = $wpdb->get_results("SELECT count(ticket_number) as ticket FROM `carparts_wc_lottery_pn_log` where lottery_id = $lotteryid"); 
+        if($result[0]->ticket > 0){
+            return $result[0]->ticket;
+        }
