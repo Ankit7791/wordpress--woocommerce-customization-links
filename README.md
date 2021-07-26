@@ -58,3 +58,8 @@ https://stackoverflow.com/questions/51357197/get-tax-rate-separately-for-every-c
         if($result[0]->ticket > 0){
             return $result[0]->ticket;
         }
+
+
+//How to prevent non-buyers from reviewing your WooCommerce products
+
+https://barn2.com/woocommerce-allow-reviews-verified-buyers/
