@@ -63,3 +63,6 @@ https://stackoverflow.com/questions/51357197/get-tax-rate-separately-for-every-c
 //How to prevent non-buyers from reviewing your WooCommerce products
 
 https://barn2.com/woocommerce-allow-reviews-verified-buyers/
+
+//customize myaccount pages 
+https://www.youtube.com/watch?v=iEfrFSTPCSQ&t=1243s
