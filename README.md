@@ -68,22 +68,23 @@ https://barn2.com/woocommerce-allow-reviews-verified-buyers/
 https://www.youtube.com/watch?v=iEfrFSTPCSQ&t=1243s
 
 //woocommerce get lowest price in category
-function wpq_get_min_price_per_product_cat( $term_id ) {
-  global $wpdb;
-  $sql = "
-    SELECT  MIN( meta_value+0 ) as minprice
-    FROM {$wpdb->posts} 
-    INNER JOIN {$wpdb->term_relationships} ON ({$wpdb->posts}.ID = {$wpdb->term_relationships}.object_id)
-    INNER JOIN {$wpdb->postmeta} ON ({$wpdb->posts}.ID = {$wpdb->postmeta}.post_id) 
-    WHERE  
-      ( {$wpdb->term_relationships}.term_taxonomy_id IN (%d) ) 
-    AND {$wpdb->posts}.post_type = 'product' 
-    AND {$wpdb->posts}.post_status = 'publish' 
-    AND {$wpdb->postmeta}.meta_key = '_price'
-    AND {$wpdb->postmeta}.meta_value != 'outofstock'
-    
-  ";
-  return $wpdb->get_var( $wpdb->prepare( $sql, $term_id ) );
-}
-add_filter('custom_lowest_pricing_category', 'wpq_get_min_price_per_product_cat');
+
+	function wpq_get_min_price_per_product_cat( $term_id ) {
+	  global $wpdb;
+	  $sql = "
+	    SELECT  MIN( meta_value+0 ) as minprice
+	    FROM {$wpdb->posts} 
+	    INNER JOIN {$wpdb->term_relationships} ON ({$wpdb->posts}.ID = {$wpdb->term_relationships}.object_id)
+	    INNER JOIN {$wpdb->postmeta} ON ({$wpdb->posts}.ID = {$wpdb->postmeta}.post_id) 
+	    WHERE  
+	      ( {$wpdb->term_relationships}.term_taxonomy_id IN (%d) ) 
+	    AND {$wpdb->posts}.post_type = 'product' 
+	    AND {$wpdb->posts}.post_status = 'publish' 
+	    AND {$wpdb->postmeta}.meta_key = '_price'
+	    AND {$wpdb->postmeta}.meta_value != 'outofstock'
+
+	  ";
+	  return $wpdb->get_var( $wpdb->prepare( $sql, $term_id ) );
+	}
+	add_filter('custom_lowest_pricing_category', 'wpq_get_min_price_per_product_cat');
 
