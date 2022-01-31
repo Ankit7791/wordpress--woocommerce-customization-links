@@ -88,3 +88,12 @@ https://www.youtube.com/watch?v=iEfrFSTPCSQ&t=1243s
 	}
 	add_filter('custom_lowest_pricing_category', 'wpq_get_min_price_per_product_cat');
 
+#Wordpress Security to be added in .htaccess
+
+<ifModule mod_headers.c>
+Header set Strict-Transport-Security "max-age=31536000" env=HTTPS
+Header set X-XSS-Protection "1; mode=block"
+Header set X-Content-Type-Options nosniff
+Header set X-Frame-Options DENY
+Header set Referrer-Policy: no-referrer-when-downgrade
+</ifModule>
