@@ -97,3 +97,12 @@ https://www.youtube.com/watch?v=iEfrFSTPCSQ&t=1243s
 	Header set X-Frame-Options DENY
 	Header set Referrer-Policy: no-referrer-when-downgrade
 	</ifModule>
+	
+//wordpress hack, remove .htaccess file from all folders , run this command in terminal 
+
+	find / -name "*.htaccess" -type f (this command finds and show list of htaccess files)
+	find -name ".htaccess" -type f -delete (deletes all the htaccess files)
+
+
+
+
