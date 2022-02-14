@@ -104,5 +104,27 @@ https://www.youtube.com/watch?v=iEfrFSTPCSQ&t=1243s
 	find -name ".htaccess" -type f -delete (deletes all the htaccess files)
 
 
+//How to fix wrong price sorting and filters in woocommerce
+https://wpsoul.com/how-to-fix-wrong-price-sorting-and-filters-in-woocommerce/
 
+/**
+ * Customize ordering by price
+ */
+add_filter('woocommerce_get_catalog_ordering_args', function ($args) {
+    $orderby_value = isset($_GET['orderby']) ? wc_clean($_GET['orderby']) : apply_filters('woocommerce_default_catalog_orderby', get_option('woocommerce_default_catalog_orderby'));
+
+    if ('price' == $orderby_value) {
+        $args['orderby'] = 'meta_value_num';
+        $args['order'] = 'ASC';
+        $args['meta_key'] = '_price';
+    }
+
+    if ('price-desc' == $orderby_value) {
+        $args['orderby'] = 'meta_value_num';
+        $args['order'] = 'DESC';
+        $args['meta_key'] = '_price';
+    }
+
+    return $args;
+});
 
