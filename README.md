@@ -126,3 +126,103 @@ https://wpsoul.com/how-to-fix-wrong-price-sorting-and-filters-in-woocommerce/
     return $args;
 });
 
+
+#Add to cart hide and role specific
+	
+	// Replacing the button add to cart by a link to the product in Shop and archives pages
+add_filter( 'woocommerce_loop_add_to_cart_link', 'replace_loop_add_to_cart_button', 10, 2 );
+function replace_loop_add_to_cart_button( $button, $product  ) {
+    // Only for logged in users
+    if( ! is_user_logged_in() ) 
+	{
+    $button_text = __( "View product", "woocommerce" );
+    $button = '<a class="button" href="' . $product->get_permalink() . '">' . $button_text . '</a>';
+
+    return $button;
+	}else{
+
+                $user = wp_get_current_user();
+		if ( in_array( 'fieldtesters_france', (array) $user->roles ) || in_array( 'fieldtester', (array) $user->roles )
+		|| in_array( 'fieldtesters_spain', (array) $user->roles ) || in_array( 'promo_team', (array) $user->roles || in_array( 'administrator', (array) $user->roles )  )
+		 ) {
+
+                         $button_text = __( "Add to Cart", "woocommerce" );
+    $button = '<a class="button" href="' . $product->get_permalink() . '">' . $button_text . '</a>';
+
+return $button;
+
+
+		}else{
+
+                         $button_text = __( "View product", "woocommerce" );
+    $button = '<a class="button" href="' . $product->get_permalink() . '">' . $button_text . '</a>';
+
+    return $button;
+                }
+        }
+}
+
+
+add_action( 'woocommerce_single_product_summary', 'remove_add_to_cart_button', 1 );
+function remove_add_to_cart_button() {
+    // Only for logged in users
+    if( ! is_user_logged_in() ) {
+
+			//The user has the "author" role
+			global $product;
+
+			// For variable product types (keeping attribute select fields)
+			if( $product->is_type( 'variable' ) ) {
+				remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 );
+			}
+			// For all other product types
+			else {
+				remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );;
+			}
+		}
+
+	else {
+
+		$user = wp_get_current_user();
+		if ( in_array( 'fieldtesters_france', (array) $user->roles ) || in_array( 'fieldtester', (array) $user->roles )
+		|| in_array( 'fieldtesters_spain', (array) $user->roles ) || in_array( 'promo_team', (array) $user->roles ) || in_array( 'administrator', (array) $user->roles )
+		 ) {
+
+
+		}else{
+			//The user has the "author" role
+			global $product;
+
+			// For variable product types (keeping attribute select fields)
+			if( $product->is_type( 'variable' ) ) {
+				remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button', 20 );
+			}
+			// For all other product types
+			else {
+				remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );;
+			}
+		}
+	}
+}
+
+add_action( 'woocommerce_product_meta_start','content_after_addtocart', 100 );
+  function content_after_addtocart() {
+  // place your content below.
+
+   if( ! is_user_logged_in() ) {
+  			echo 'Please <a href="https://www.urbanbait.co.uk/my-account">login</a> to Order <br/> <br/>';
+   }else{
+
+	   $user = wp_get_current_user();
+		if ( in_array( 'fieldtesters_france', (array) $user->roles ) || in_array( 'fieldtester', (array) $user->roles )
+		|| in_array( 'fieldtesters_spain', (array) $user->roles ) || in_array( 'promo_team', (array) $user->roles ) || in_array( 'administrator', (array) $user->roles )
+		 ) {
+
+		}else{
+
+			echo 'Your are not allowed to order <br/> ';
+
+		}
+   }
+}
+
