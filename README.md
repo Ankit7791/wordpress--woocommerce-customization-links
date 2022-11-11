@@ -1,5 +1,9 @@
 # wordpress--woocommerce-customization-links
 
+//custom post type archieve page with load more ajax functionality
+https://weichie.com/blog/load-more-posts-ajax-wordpress/
+https://rudrastyh.com/wordpress/load-more-posts-ajax.html
+
 //create custom payment gateway
 https://www.skyverge.com/blog/how-to-create-a-simple-woocommerce-payment-gateway/
 
