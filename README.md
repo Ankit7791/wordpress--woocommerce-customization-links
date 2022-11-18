@@ -1,5 +1,8 @@
 # wordpress--woocommerce-customization-links
 
+//jetengine macros
+https://crocoblock.com/knowledge-base/articles/jetengine-macros-guide/
+
 //custom post type archieve page with load more ajax functionality
 https://weichie.com/blog/load-more-posts-ajax-wordpress/
 https://rudrastyh.com/wordpress/load-more-posts-ajax.html
