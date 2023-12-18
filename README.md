@@ -6,9 +6,10 @@
 // 		}
 
 Change on 1543 Line to this   
-		if (isset($settings['posts_per_page']) && isset($settings['columns'])) {
-    $settings['rows'] = ceil((int) $settings['posts_per_page'] / (int) $settings['columns']);
-}
+	
+	if (isset($settings['posts_per_page']) && isset($settings['columns'])) {
+	    $settings['rows'] = ceil((int) $settings['posts_per_page'] / (int) $settings['columns']);
+	}
 
 //jetengine macros
 https://crocoblock.com/knowledge-base/articles/jetengine-macros-guide/
