@@ -1,5 +1,15 @@
 # wordpress--woocommerce-customization-links
 
+//elementor pro plugin wp-content/plugins/elementor-pro/modules/woocommerce/module.php if any fatalerror
+// 		if ( isset( $settings['posts_per_page'] ) && isset( $settings['columns'] ) ) {
+// 			$settings['rows'] = ceil( $settings['posts_per_page'] / $settings['columns'] );
+// 		}
+
+Change on 1543 Line to this   
+		if (isset($settings['posts_per_page']) && isset($settings['columns'])) {
+    $settings['rows'] = ceil((int) $settings['posts_per_page'] / (int) $settings['columns']);
+}
+
 //jetengine macros
 https://crocoblock.com/knowledge-base/articles/jetengine-macros-guide/
 
